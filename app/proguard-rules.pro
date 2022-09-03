@@ -18,7 +18,7 @@
 
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
-#-renamesourcefileattribute SourceFile android.graphics.Rect
+#-renamesourcefileattribute SourceFile
 -keep public class com.rs.pathdemo.widget.WhiteboardTextureView{*;}
 -keep public class com.rs.pathdemo.widget.WhiteboardTextureView$*{*;}
 -keep public class com.rs.pathdemo.ShaderNative{*;}

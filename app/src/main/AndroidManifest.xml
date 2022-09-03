@@ -17,7 +17,7 @@
 
 
         <activity
-            android:name="com.rs.pathdemo.pen.page.GLActivity"
+            android:name="com.rs.pathdemo.GLActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Fullscreen" />
         <activity android:name="com.rs.pathdemo.MainActivity"

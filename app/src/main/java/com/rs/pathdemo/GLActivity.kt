@@ -1,11 +1,11 @@
-package com.rs.pathdemo.pen.page
+package com.rs.pathdemo
 
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.rs.pathdemo.R
-import com.rs.pathdemo.ShaderNative
+import com.rs.pathdemo.pen.page.BrushManager
 import com.rs.pathdemo.widget.TouchView
 import com.rs.pathdemo.widget.WhiteboardTextureView
 
@@ -28,25 +28,24 @@ class GLActivity : AppCompatActivity() {
         val touch_view = findViewById(R.id.touch_view) as TouchView
         whiteView.init(touch_view, object : WhiteboardTextureView.IWhiteboardStatus {
             override fun hasPen(undoDisable: Boolean, redoDisable: Boolean) {
-                val it = Color.RED
-                val a = Color.alpha(it) * 1f / 255f
-                val r = Color.red(it) * 1f / 255f
-                val g = Color.green(it) * 1f / 255f
-                val b = Color.blue(it) * 1f / 255f
-                ShaderNative.glPaintColor(a, r, g, b)
+                initColor()
             }
         }, currBrushConfig)
-
-        Handler().postDelayed(Runnable {
-            val it = Color.RED
-            val a = Color.alpha(it) * 1f / 255f
-            val r = Color.red(it) * 1f / 255f
-            val g = Color.green(it) * 1f / 255f
-            val b = Color.blue(it) * 1f / 255f
-            ShaderNative.glPaintColor(a, r, g, b)
+        Handler().postDelayed({
+            initColor()
         }, 200)
+        findViewById<Button>(R.id.back_bt).setOnClickListener {
+            finish()
+        }
+    }
 
-
+    private fun initColor() {
+        val it = Color.RED
+        val a = Color.alpha(it) * 1f / 255f
+        val r = Color.red(it) * 1f / 255f
+        val g = Color.green(it) * 1f / 255f
+        val b = Color.blue(it) * 1f / 255f
+        ShaderNative.glPaintColor(a, r, g, b)
     }
 
 

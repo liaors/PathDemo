@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.rs.pathdemo.widget.PathView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</com.rs.pathdemo.widget.PathView>
+    <com.rs.pathdemo.widget.PathView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/back_bt"
+        android:text="返回"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</FrameLayout>

@@ -8,12 +8,11 @@ import com.rs.pathdemo.R
 import com.rs.pathdemo.pen.TexturePen
 
 /**
- *
- * @author  Lai
- *
- * @time 2021/2/25 14:00
- * @describe describe
- *
+ * @ProjectName: PathDemo
+ * @Descpription:
+ * @Author: liaorongsheng
+ * @email: 1403233812@qq.com
+ * @Date : 2022/9/3
  */
 data class BrushRes(val id: String, val resBrush: Int, var isRotate: Boolean = true)
 

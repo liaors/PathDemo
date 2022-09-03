@@ -17,7 +17,7 @@ import kotlin.math.pow
  * @email: 1403233812@qq.com
  * @Date : 2022/9/3
  */
-public class TexturePen : IPen {
+class TexturePen : IPen {
     companion object {
         const val DRAW = 0
         const val ERASER = 1

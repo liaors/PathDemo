@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rs.pathdemo.pen.page.GLActivity">
+    tools:context="com.rs.pathdemo.GLActivity">
 
 
     <com.rs.pathdemo.widget.WhiteboardTextureView
@@ -22,5 +22,13 @@
         app:layout_constraintEnd_toEndOf="@id/white_view"
         app:layout_constraintStart_toStartOf="@id/white_view"
         app:layout_constraintTop_toTopOf="@id/white_view" />
+
+    <Button
+        android:id="@+id/back_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="返回"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

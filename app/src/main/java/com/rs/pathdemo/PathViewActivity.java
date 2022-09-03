@@ -2,6 +2,7 @@ package com.rs.pathdemo;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,6 @@ public class PathViewActivity extends AppCompatActivity {
             layout = R.layout.activity_type_two;
         }
         setContentView(layout);
-
+        findViewById(R.id.back_bt).setOnClickListener(v -> finish());
     }
 }

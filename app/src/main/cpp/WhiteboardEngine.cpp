@@ -103,22 +103,6 @@ void WhiteboardEngine::glDrawPoints(float *points, int vertexCount, float textur
 }
 
 
-void WhiteboardEngine::glSetPaintTexture(ImageInfo *brushImageInfo, float brushWidth,
-                                         bool isTextureRotate,
-                                         BrushInfo::OutType outType) {
-    if (isDraw()) return;
-
-    if (brushImageInfo == nullptr) {
-        paintShader->glSetBrush(brushImageInfo, brushWidth, isTextureRotate, outType);
-    } else {
-        //需要在gl线程渲染
-        noRequestRendering([=] {
-            paintShader->glSetBrush(brushImageInfo, brushWidth, isTextureRotate, outType);
-            glDisplay();
-        }, false);
-    }
-}
-
 void WhiteboardEngine::glDrawData(float *points, int vertexCount, ImageInfo *brushImageInfo,
                                   float brushWidth, BrushInfo::OutType outType,
                                   bool isTextureRotate, bool isClear,
@@ -172,61 +156,12 @@ void WhiteboardEngine::onDestroy() {
         initCallBack = nullptr;
 }
 
-void WhiteboardEngine::glResultMatrix(float *f) {
-    if (isDraw()) return;
-    if (f != nullptr) {
-        requestRendering([=] {
-            resultShader->setMMatrix(f);
-            glDisplay();
-        }, true);
-    }
-}
-
-void WhiteboardEngine::glResult(float r, float restR, float dx, float dy, float sc) {
-    if (isDraw()) return;
-    requestRendering([=] {
-        resultShader->setTransformation(r, restR, dx, dy, sc);
-        glDisplay();
-    }, true);
-}
-
-void WhiteboardEngine::glTranslate(float dx, float dy) {
-    if (isDraw()) return;
-    requestRendering([=] {
-        resultShader->setTransformation(0.0f, 0.0f, dx, dy, 0.0f);
-        glDisplay();
-    }, true);
-}
-
-void WhiteboardEngine::glScale(float s) {
-    if (isDraw()) return;
-    requestRendering([=] {
-        resultShader->setTransformation(0.0f, 0.0f, 0.0f, 0.0f, s);
-        glDisplay();
-    }, true);
-}
-
-
-void WhiteboardEngine::glRotate(float r) {
-    if (isDraw()) return;
-    requestRendering([=] {
-        resultShader->setTransformation(r, 0.0f, 0.0f, 0.0f, 0.0f);
-        glDisplay();
-    }, true);
-}
-
 void WhiteboardEngine::glDisplay() {
     if (isDraw()) return;
 
     resultShader->mergeTextureDisplay(bgShader->bgTextureId, paintShader->paintTextureId);
 }
 
-void WhiteboardEngine::glClearPaint() {
-    if (isDraw()) return;
-    requestRendering([=] {
-        paintShader->glClearPaint();
-    }, true);
-}
 
 
 void WhiteboardEngine::glClearColor() {
@@ -236,23 +171,7 @@ void WhiteboardEngine::glClearColor() {
         bgShader->draw();
         glDisplay();
     }, true);
-}
 
-void WhiteboardEngine::glSave(JNIEnv *env, char *path, jobject callBack) {
-    //JavaVM是虚拟机在JNI中的表示，等下再其他线程回调java层需要用到
-    if (mJavaVM == nullptr)
-        env->GetJavaVM(&mJavaVM);
-
-    if (saveCallBack != nullptr)
-        saveCallBack = nullptr;
-    //生成一个全局的callBack
-    saveCallBack = env->NewGlobalRef(callBack);
-
-    noRequestRendering([=] {
-        resultShader->save(path);
-        free(path);
-        voidCallBack(saveCallBack);
-    }, false);
 }
 
 

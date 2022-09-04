@@ -45,21 +45,6 @@ public:
 
     void glClearColor();
 
-    void glResultMatrix(float *f);
-
-    void glResult(float r, float restR, float dx, float dy, float sc);
-
-    void glTranslate(float dx, float dy);
-
-    void glScale(float s);
-
-    void glRotate(float s);
-
-    void glSetPaintTexture(ImageInfo *brushImageInfo,
-                           float brushWidth,
-                           bool isTextureRotate,
-                           BrushInfo::OutType outType);
-
     void setPaintColor(float A,
                        float R,
                        float G,
@@ -75,10 +60,6 @@ public:
                     float B);
 
     void glDisplay();
-
-    void glClearPaint();
-
-    void glSave(JNIEnv *env, char *path, jobject callBack);
 
     void voidCallBack(jobject voidCallBack);
 

@@ -1,11 +1,13 @@
-package com.rs.pathdemo
+package com.rs.pathdemo.activity
 
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.rs.pathdemo.pen.page.BrushManager
+import com.rs.pathdemo.R
+import com.rs.pathdemo.ShaderNative
+import com.rs.pathdemo.util.pen.page.BrushManager
 import com.rs.pathdemo.widget.TouchView
 import com.rs.pathdemo.widget.WhiteboardTextureView
 

@@ -13,10 +13,10 @@
 
 
         <activity
-            android:name="com.rs.pathdemo.GLActivity"
+            android:name="com.rs.pathdemo.activity.GLActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Fullscreen" />
-        <activity android:name="com.rs.pathdemo.MainActivity"
+        <activity android:name="com.rs.pathdemo.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.rs.pathdemo.PathViewActivity" />
+        <activity android:name="com.rs.pathdemo.activity.PathViewActivity" />
     </application>
 
 </manifest>

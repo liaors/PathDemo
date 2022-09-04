@@ -1,11 +1,11 @@
-package com.rs.pathdemo.pen
+package com.rs.pathdemo.util.pen
 
 import android.graphics.PointF
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import com.rs.pathdemo.ShaderNative
-import com.rs.pathdemo.pen.page.BrushInfoConfig
+import com.rs.pathdemo.util.pen.page.BrushInfoConfig
 import com.rs.pathdemo.util.PointUtils
 import kotlin.math.pow
 

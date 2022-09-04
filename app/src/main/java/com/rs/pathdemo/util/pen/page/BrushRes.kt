@@ -1,11 +1,11 @@
-package com.rs.pathdemo.pen.page
+package com.rs.pathdemo.util.pen.page
 
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import com.rs.pathdemo.R
-import com.rs.pathdemo.pen.TexturePen
+import com.rs.pathdemo.util.pen.TexturePen
 
 /**
  * @ProjectName: PathDemo

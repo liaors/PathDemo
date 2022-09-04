@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.rs.pathdemo.MainActivity">
+    tools:context="com.rs.pathdemo.activity.MainActivity">
 
     <Button
         android:id="@+id/type_one_bt"

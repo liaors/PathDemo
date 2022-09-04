@@ -5,13 +5,12 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.Surface
-import android.view.SurfaceView
 import android.view.TextureView
 import com.rs.pathdemo.ShaderNative
-import com.rs.pathdemo.pen.IPen
-import com.rs.pathdemo.pen.TexturePen
-import com.rs.pathdemo.pen.page.BrushInfoConfig
-import com.rs.pathdemo.pen.page.BrushManager
+import com.rs.pathdemo.util.pen.IPen
+import com.rs.pathdemo.util.pen.TexturePen
+import com.rs.pathdemo.util.pen.page.BrushInfoConfig
+import com.rs.pathdemo.util.pen.page.BrushManager
 import java.util.*
 import kotlin.math.atan2
 import kotlin.math.sqrt

@@ -1,4 +1,4 @@
-package com.rs.pathdemo;
+package com.rs.pathdemo.render;
 
 import android.opengl.GLES10;
 import android.opengl.GLES20;

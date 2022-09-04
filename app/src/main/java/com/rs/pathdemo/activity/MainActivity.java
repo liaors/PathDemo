@@ -1,10 +1,12 @@
-package com.rs.pathdemo;
+package com.rs.pathdemo.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.rs.pathdemo.R;
 
 public class MainActivity extends AppCompatActivity {
 private static final String TYPE = "type";
@@ -15,7 +17,7 @@ private static final String TYPE = "type";
     }
 
     public void onClick(View view) {
-        Intent intent = new Intent(this,PathViewActivity.class);
+        Intent intent = new Intent(this, PathViewActivity.class);
         switch (view.getId()){
             case R.id.type_one_bt:
                 intent.putExtra(TYPE, 1);

@@ -24,8 +24,8 @@ import java.util.List;
 public class PathView extends View {
     private static final String TAG = PathView.class.getSimpleName();
     private Paint paint;
-    private int paintColor = Color.RED;
-    private int paintSize = 10;
+    private final int paintColor = Color.RED;
+    private final int paintSize = 10;
     private List<BaseAction> mBaseActions;
     private BaseAction curAction;
     public PathView(Context context) {

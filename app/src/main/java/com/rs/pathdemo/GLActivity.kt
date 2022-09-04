@@ -24,8 +24,8 @@ class GLActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_type_three)
-        val whiteView = findViewById(R.id.white_view) as WhiteboardTextureView
-        val touch_view = findViewById(R.id.touch_view) as TouchView
+        val whiteView = findViewById<WhiteboardTextureView>(R.id.white_view)
+        val touch_view = findViewById<TouchView>(R.id.touch_view)
         whiteView.init(touch_view, object : WhiteboardTextureView.IWhiteboardStatus {
             override fun hasPen(undoDisable: Boolean, redoDisable: Boolean) {
                 initColor()

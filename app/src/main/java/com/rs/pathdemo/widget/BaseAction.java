@@ -32,8 +32,8 @@ abstract class BaseAction {
 }
 
 class MyPoint extends BaseAction {
-    private float x;
-    private float y;
+    private final float x;
+    private final float y;
 
     MyPoint(float px, float py, int color) {
         super(color);
@@ -58,8 +58,8 @@ class MyPoint extends BaseAction {
  * 自由曲线
  */
 class MyPath extends BaseAction {
-    private Path path;
-    private int size;
+    private final Path path;
+    private final int size;
 
     MyPath() {
         path = new Path();
@@ -97,8 +97,8 @@ class MyPath extends BaseAction {
  * 直线
  */
 class MyLine extends BaseAction {
-    private float startX;
-    private float startY;
+    private final float startX;
+    private final float startY;
     private float stopX;
     private float stopY;
     private int size;
@@ -140,8 +140,8 @@ class MyLine extends BaseAction {
  * 方框
  */
 class MyRect extends BaseAction {
-    private float startX;
-    private float startY;
+    private final float startX;
+    private final float startY;
     private float stopX;
     private float stopY;
     private int size;
@@ -183,12 +183,12 @@ class MyRect extends BaseAction {
  * 圆框
  */
 class MyCircle extends BaseAction {
-    private float startX;
-    private float startY;
+    private final float startX;
+    private final float startY;
     private float stopX;
     private float stopY;
     private float radius;
-    private int size;
+    private final int size;
 
 
 
@@ -222,8 +222,8 @@ class MyCircle extends BaseAction {
 }
 
 class MyFillRect extends BaseAction {
-    private float startX;
-    private float startY;
+    private final float startX;
+    private final float startY;
     private float stopX;
     private float stopY;
     private int size;
@@ -265,12 +265,12 @@ class MyFillRect extends BaseAction {
  * 圆饼
  */
 class MyFillCircle extends BaseAction {
-    private float startX;
-    private float startY;
+    private final float startX;
+    private final float startY;
     private float stopX;
     private float stopY;
     private float radius;
-    private int size;
+    private final int size;
 
 
     public MyFillCircle(float x, float y, int size, int color) {

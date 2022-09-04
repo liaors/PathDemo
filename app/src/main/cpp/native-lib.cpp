@@ -10,8 +10,6 @@
 
 WhiteboardEngine *whiteboardEngine = nullptr;
 
-TextureImageDemo *bgShader = nullptr;
-
 
 ImageInfo *bitmapToImageInfo(JNIEnv *env, jobject &bitmap) {
     AndroidBitmapInfo info; // create a AndroidBitmapInfo
@@ -69,53 +67,6 @@ Java_com_rs_pathdemo_ShaderNative_glDrawPaint(JNIEnv *env, jclass instance, jflo
     whiteboardEngine->glDrawPoints(pDouble, verTextSize, calulateXYAnagle);
 }
 
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_rs_pathdemo_ShaderNative_glResultMatrix(JNIEnv *env, jclass instance,
-                                                    jfloatArray matrixValue) {
-    if (whiteboardEngine == nullptr) return;
-
-    jfloat *f = env->GetFloatArrayElements(matrixValue, nullptr);
-    whiteboardEngine->glResultMatrix(f);
-}
-
-
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_rs_pathdemo_ShaderNative_glResult(JNIEnv *env, jclass instance, jfloat r, jfloat restR,
-                                              jfloat dx, jfloat dy, jfloat sc) {
-    if (whiteboardEngine == nullptr) return;
-    whiteboardEngine->glResult(r, restR, dx, dy, sc);
-}
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_rs_pathdemo_ShaderNative_glSetPaintTexture(JNIEnv *env, jclass instance,
-                                                       jobject bitmap, jboolean isTextureRotate,
-                                                       jfloat brushWidth,
-                                                       jint outType) {
-    if (whiteboardEngine == nullptr) return;
-
-    BrushInfo::OutType setOutType;
-    switch (outType) {
-        case 1:
-            setOutType = BrushInfo::OutType::ERASER;
-            break;
-        default:
-            setOutType = BrushInfo::OutType::DRAW;
-            break;
-    }
-    //不等于空说明需要重新设置纹理图片
-    if (bitmap != nullptr) {
-        ImageInfo *pInfo = bitmapToImageInfo(env, bitmap);
-
-        whiteboardEngine->glSetPaintTexture(pInfo, brushWidth, isTextureRotate,
-                                            setOutType);
-    } else {
-        whiteboardEngine->glSetPaintTexture(nullptr, brushWidth, isTextureRotate,
-                                            setOutType);
-    }
-}
-
 extern "C" JNIEXPORT void JNICALL
 Java_com_rs_pathdemo_ShaderNative_glDrawData(JNIEnv *env, jclass instance, jfloatArray point,
                                                 jint verTextSize,
@@ -167,27 +118,6 @@ Java_com_rs_pathdemo_ShaderNative_glPaintColor(JNIEnv *env, jclass instance, jfl
 }
 
 
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_rs_pathdemo_ShaderNative_glTranslate(JNIEnv *env, jclass instance, jfloat dx,
-                                                 jfloat dy) {
-    if (whiteboardEngine == nullptr) return;
-    whiteboardEngine->glTranslate(dx, dy);
-}
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_rs_pathdemo_ShaderNative_glScale(JNIEnv *env, jclass instance, jfloat sc) {
-    if (whiteboardEngine == nullptr) return;
-    whiteboardEngine->glScale(sc);
-}
-extern "C" JNIEXPORT void JNICALL
-Java_com_rs_pathdemo_ShaderNative_glRotate(JNIEnv *env, jclass instance, jfloat sc) {
-    if (whiteboardEngine == nullptr) return;
-    whiteboardEngine->glRotate(sc);
-}
-
-
-
 extern "C" JNIEXPORT void JNICALL
 Java_com_rs_pathdemo_ShaderNative_onDestroy(JNIEnv *env, jclass instance) {
     if (whiteboardEngine != nullptr) {
@@ -202,70 +132,6 @@ Java_com_rs_pathdemo_ShaderNative_glClearAll(JNIEnv *env, jclass instance) {
         whiteboardEngine->glClearColor();
     }
 }
-extern "C" JNIEXPORT void JNICALL
-Java_com_rs_pathdemo_ShaderNative_glClearPaintColor(JNIEnv *env, jclass instance) {
-    if (whiteboardEngine != nullptr) {
-        whiteboardEngine->glClearPaint();
-    }
-}
-
-
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_rs_pathdemo_ShaderNative_glInit(JNIEnv *env, jclass instance, jint w, jint h,
-                                            jobject bitmap) {
-    ImageInfo *pInfo = bitmapToImageInfo(env, bitmap);
-    bgShader = new TextureImageDemo();
-
-    bgShader->imaData = pInfo->pixels;
-    bgShader->imgWidth = pInfo->width;
-    bgShader->imgHeight = pInfo->height;
-
-    bgShader->Init();
-    bgShader->OnSurfaceChanged(w, h);
-}
-
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_rs_pathdemo_ShaderNative_glTestDraw(JNIEnv *env, jclass instance) {
-    bgShader->draw();
-}
-
-extern "C" JNIEXPORT void JNICALL
-Java_com_rs_pathdemo_ShaderNative_glTestDrawR(JNIEnv *env, jclass instance, jfloat x, jfloat y,
-                                                 jfloat z) {
-    bgShader->change(x, y, z);
-}
-
-
-char *jstringToChar(JNIEnv *env, jstring jstr) {
-    char *rtn = NULL;
-    jclass clsstring = env->FindClass("java/lang/String");
-    jstring strencode = env->NewStringUTF("utf-8");
-    jmethodID mid = env->GetMethodID(clsstring, "getBytes", "(Ljava/lang/String;)[B");
-    jbyteArray barr = (jbyteArray) env->CallObjectMethod(jstr, mid, strencode);
-    jsize alen = env->GetArrayLength(barr);
-    jbyte *ba = env->GetByteArrayElements(barr, JNI_FALSE);
-    if (alen > 0) {
-        rtn = (char *) malloc(alen + 1);
-        memcpy(rtn, ba, alen);
-        rtn[alen] = 0;
-    }
-    env->ReleaseByteArrayElements(barr, ba, 0);
-    return rtn;
-}
-
-
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_rs_pathdemo_ShaderNative_glSave(JNIEnv *env, jclass clazz, jstring savePath,
-                                            jobject callBack) {
-    if (whiteboardEngine == nullptr) return;
-    char *charSavePath = jstringToChar(env, savePath);
-
-    whiteboardEngine->glSave(env, charSavePath, callBack);
-}
-
 
 
 

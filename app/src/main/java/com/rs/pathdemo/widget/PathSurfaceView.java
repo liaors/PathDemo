@@ -30,8 +30,8 @@ public class PathSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private SurfaceHolder mSurfaceHolder = null;
 
     private BaseAction curAction = null;
-    private int paintColor = Color.RED;
-    private int paintSize = 10;
+    private final int paintColor = Color.RED;
+    private final int paintSize = 10;
 
     private Paint mPaint;
 
@@ -39,7 +39,7 @@ public class PathSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     private Bitmap mBitmap;
 
-    private ActionType mActionType = ActionType.Path;
+    private final ActionType mActionType = ActionType.Path;
 
     public PathSurfaceView(Context context) {
         super(context);

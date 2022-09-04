@@ -30,7 +30,7 @@ object PointUtils {
 
     fun line(point1: PointF, point2: PointF): ArrayList<PointF> {
         var steep = false
-        val list = ArrayList<PointF>();
+        val list = ArrayList<PointF>()
 
         point1.set(0f, 0f)
         point2.set(400f, 400f)
@@ -52,9 +52,9 @@ object PointUtils {
             y0 = y1.also { y1 = y0 }
         }
 
-        val dx = x1 - x0;
-        val dy = y1 - y0;
-        val derror2 = abs(dy) * 2;
+        val dx = x1 - x0
+        val dy = y1 - y0
+        val derror2 = abs(dy) * 2
         var error2 = 0
         var y = y0
 
@@ -83,12 +83,12 @@ object PointUtils {
     ): ArrayList<PointF> {
 
 
-        val list = ArrayList<PointF>();
+        val list = ArrayList<PointF>()
         var t = 0.0
 
         while (t <= 1.0) {
-            val x = (1f - t) * (1f - t) * from.x + 2f * (1f - t) * t * control.x + t * t * to.x;
-            val y = (1f - t) * (1f - t) * from.y + 2f * (1f - t) * t * control.y + t * t * to.y;
+            val x = (1f - t) * (1f - t) * from.x + 2f * (1f - t) * t * control.x + t * t * to.x
+            val y = (1f - t) * (1f - t) * from.y + 2f * (1f - t) * t * control.y + t * t * to.y
             list.add(PointF(x.toFloat(), y.toFloat()))
             t += 0.05
         }
@@ -103,7 +103,7 @@ object PointUtils {
         control: PointF,
         pointSize: Float? = 15f
     ): ArrayList<PointF> {
-        val P0 = from;
+        val P0 = from
         // 如果 control 是 from 和 to 的中点，则将 control 设置为和 from 重合
         val P1 = if (isCenter(control, from, to)) {
             from
@@ -113,16 +113,16 @@ object PointUtils {
         //val P1 = control
         val P2 = to
 
-        val ax = P0.x - 2 * P1.x + P2.x;
-        val ay = P0.y - 2 * P1.y + P2.y;
-        val bx = 2 * P1.x - 2 * P0.x;
-        val by = 2 * P1.y - 2 * P0.y;
+        val ax = P0.x - 2 * P1.x + P2.x
+        val ay = P0.y - 2 * P1.y + P2.y
+        val bx = 2 * P1.x - 2 * P0.x
+        val by = 2 * P1.y - 2 * P0.y
 
-        val A = 4 * (ax * ax + ay * ay);
-        val B = 4 * (ax * bx + ay * by);
-        val C = bx * bx + by * by;
+        val A = 4 * (ax * ax + ay * ay)
+        val B = 4 * (ax * bx + ay * by)
+        val C = bx * bx + by * by
 
-        val totalLength = lengthWithT(1.0, A.toDouble(), B.toDouble(), C.toDouble());  // 整条曲线的长度
+        val totalLength = lengthWithT(1.0, A.toDouble(), B.toDouble(), C.toDouble())  // 整条曲线的长度
         val pointsPerLength = pointsPerLengthSum / (pointSize?:15f) // 用点的尺寸计算出，单位长度需要多少个点
         val count = max(1.0, ceil(pointsPerLength * totalLength)).toInt()  // 曲线应该生成的点数
         //Log.e("11111", "pointsPerLength : $pointsPerLength")
@@ -243,11 +243,11 @@ object PointUtils {
             return 0.0
         }
         val temp1 = sqrt(C + t * (B + A * t))
-        val temp2 = (2 * A * t * temp1 + B * (temp1 - sqrt(C)));
+        val temp2 = (2 * A * t * temp1 + B * (temp1 - sqrt(C)))
         val temp3 = Math.log(abs(B + 2 * sqrt(A) * sqrt(C) + 0.0001))
         val temp4 = Math.log(abs(B + 2 * A * t + 2 * sqrt(A) * temp1) + 0.0001)
-        val temp5 = 2 * sqrt(A) * temp2;
-        val temp6 = (B * B - 4 * A * C) * (temp3 - temp4);
+        val temp5 = 2 * sqrt(A) * temp2
+        val temp6 = (B * B - 4 * A * C) * (temp3 - temp4)
 
         return (temp5 + temp6) / (8 * A.pow(1.5))
     }
@@ -258,7 +258,7 @@ object PointUtils {
         control: PointF,
         pointSize: Float = 40f
     ): ArrayList<PointF> {
-        val list = ArrayList<PointF>();
+        val list = ArrayList<PointF>()
         val segmentDistance = 1 //设置线段的距离为1px.
 
         val distance: Float = getDistanceTo(from, to) // 计算两个中间点的距离
@@ -269,8 +269,8 @@ object PointUtils {
 
         val step = 1.0f / numberOfSegments.toFloat()
         for (j in 0 until numberOfSegments) {
-            val x = (1f - t) * (1f - t) * from.x + 2f * (1f - t) * t * control.x + t * t * to.x;
-            val y = (1f - t) * (1f - t) * from.y + 2f * (1f - t) * t * control.y + t * t * to.y;
+            val x = (1f - t) * (1f - t) * from.x + 2f * (1f - t) * t * control.x + t * t * to.x
+            val y = (1f - t) * (1f - t) * from.y + 2f * (1f - t) * t * control.y + t * t * to.y
             list.add(PointF(x, y))
             t += step
         }

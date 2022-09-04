@@ -24,7 +24,7 @@ public class PathRender implements GLSurfaceView.Renderer {
     public static final float BRUSH_SIZE = 10;
     private int program = 0;
     private int uBrushSize;
-    private static String VERTEX_SHADER = "" +
+    private static final String VERTEX_SHADER = "" +
             "attribute vec4 a_Position;\n" +
             "uniform float brushSize;\n"+
             "void main()\n" +
@@ -32,7 +32,7 @@ public class PathRender implements GLSurfaceView.Renderer {
             "    gl_Position = a_Position;\n" +
             "    gl_PointSize = brushSize;\n" +
             "}";
-    private static String FRAGMENT_SHADER = "" +
+    private static final String FRAGMENT_SHADER = "" +
             "precision mediump float;\n" +
             "uniform vec4 u_Color;\n" +
             "void main()\n" +
@@ -42,9 +42,9 @@ public class PathRender implements GLSurfaceView.Renderer {
 
     public float[] POINT_DATA = new float[]{ -1f, 1f,
             1f, 1f};
-    private int POSITION_COMPONENT_COUNT = 2;
-    private int DRAW_COUNT = POINT_DATA.length / POSITION_COMPONENT_COUNT;
-    private FloatBuffer mVertexData;
+    private final int POSITION_COMPONENT_COUNT = 2;
+    private final int DRAW_COUNT = POINT_DATA.length / POSITION_COMPONENT_COUNT;
+    private final FloatBuffer mVertexData;
     private int uColorLocation;
     private int drawIndex = 0;
 

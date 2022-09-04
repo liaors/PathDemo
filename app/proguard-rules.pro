@@ -21,9 +21,11 @@
 #-renamesourcefileattribute SourceFile
 -keep public class com.rs.pathdemo.widget.WhiteboardTextureView{*;}
 -keep public class com.rs.pathdemo.widget.WhiteboardTextureView$*{*;}
--keep public class com.rs.pathdemo.ShaderNative{*;}
--keep public class com.rs.pathdemo.MainActivity
+-keep public class com.rs.pathdemo.ShaderNative.**{*;}
+-keep public class com.rs.pathdemo.MainActivity{*;}
 -keep public class android.graphics.Rect.**{*;}
+-keepattributes EnclosingMethod
+-keepattributes Exceptions,InnerClasses
 -keepclasseswithmembernames class * {
     native <methods>;
 }

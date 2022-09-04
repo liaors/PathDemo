@@ -58,12 +58,9 @@ public class PathRender implements GLSurfaceView.Renderer {
 
     private FloatBuffer createFloatBuffer(float[] array) {
         FloatBuffer buffer = ByteBuffer
-                // 分配顶点坐标分量个数 * Float占的Byte位数
                 .allocateDirect(array.length * 4)
                 .order(ByteOrder.nativeOrder())
                 .asFloatBuffer();
-
-        // 将Dalvik的内存数据复制到Native内存中
         buffer.put(array);
         return buffer;
     }
@@ -89,7 +86,7 @@ public class PathRender implements GLSurfaceView.Renderer {
 
     @Override
     public void onDrawFrame(GL10 gl) {
-//        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         drawIndex++;
         GLES20.glUniform1f(uBrushSize,BRUSH_SIZE);
         drawLine();
@@ -106,10 +103,7 @@ public class PathRender implements GLSurfaceView.Renderer {
     }
 
     private void drawLine() {
-        // GL_LINES：每2个点构成一条线段
-        // GL_LINE_LOOP：按顺序将所有的点连接起来，包括首位相连
-        // GL_LINE_STRIP：按顺序将所有的点连接起来，不包括首位相连
-        GLES10.glPointSize(40);
+        GLES10.glPointSize(10);
         GLES20.glUniform4f(uColorLocation, 1.0f, 0.0f, 0.0f, 1.0f);
         GLES20.glDrawArrays(GLES20.GL_LINE_LOOP, 0, drawIndex);
     }
@@ -126,9 +120,7 @@ public class PathRender implements GLSurfaceView.Renderer {
     private void makeProgram(String vertexShader, String fragmentShader) {
         int vertexShaderId = compileVertexShader(vertexShader);
         int fragmentShaderId = compileFragmentShader(fragmentShader);
-        // 步骤3：将顶点着色器、片段着色器进行链接，组装成一个OpenGL程序
         program = linkProgram(vertexShaderId, fragmentShaderId);
-        // 步骤4：通知OpenGL开始使用该程序
         GLES20.glUseProgram(program);
     }
 
